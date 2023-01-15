@@ -14,5 +14,13 @@ public class Main {
         System.out.println(bmw);
         System.out.println(kia);
         System.out.println(hyundai);
+        System.out.println("");
+
+        System.out.println("Задача 3");
+        System.out.println("");
+
+        Car test = new Car("","",0, "",0,"");
+
+        System.out.println(test);
     }
 }

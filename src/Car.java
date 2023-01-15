@@ -16,12 +16,12 @@ public class Car {
      * @param country - страна проиводитель
      */
     public Car (String brand, String model, double engineVolume, String color, int year, String country){
-        this.brand = brand;
-        this.model = model;
-        this.engineVolume = engineVolume;
-        this.color = color;
-        this.year = year;
-        this.country = country;
+        this.brand = brand == null || brand.isBlank() ? "default" : brand;
+        this.model = model == null || model.isBlank() ? "default" : model;
+        this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
+        this.color = color == null || color.isBlank() ? "белый" : color;
+        this.year = year <= 0 ? 2000 : year;
+        this.country = country == null || country.isBlank() ? "default" : country;
     }
 
     public String getBrand(){
