@@ -1,5 +1,8 @@
 package transport;
 
+import static Checks.ValidationUtilities.validateString;
+import static Checks.ValidationUtilities.validateBoolean;
+
 public class Car {
     private final String brand;
     private final String model;
@@ -12,6 +15,7 @@ public class Car {
     private String registrationNumber;
     private final int numberOfSeats;
     private boolean summerTires;
+    private Key key;
 
     /** Создаю конструктор для автомобилей
      *
@@ -27,18 +31,19 @@ public class Car {
      * @param numberOfSeats - Количество мест
      * @param summerTires - признак Летняя или Зимняя резина
      */
-    public Car (String brand, String model, double engineVolume, String color, int year, String country, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires){
-        this.brand = brand == null || brand.isBlank() ? "default" : brand;
-        this.model = model == null || model.isBlank() ? "default" : model;
+    public Car (String brand, String model, double engineVolume, String color, int year, String country, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires, Key key){
+        this.brand = (validateString(brand,"default"));
+        this.model = (validateString(model,"default"));
         this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
         this.color = color == null || color.isBlank() ? "белый" : color;
         this.year = year <= 0 ? 2000 : year;
-        this.country = country == null || country.isBlank() ? "default" : country;
-        this.transmission = transmission == null || transmission.isBlank() ? "default" : transmission;
+        this.country = (validateString(country,"default"));
+        this.transmission = (validateString(transmission,"default"));
         this.bodyType = bodyType == null || bodyType.isBlank() ? "default" : bodyType;
-        this.registrationNumber = registrationNumber == null || registrationNumber.isBlank() ? "А000АА00" : registrationNumber;
+        this.registrationNumber = (validateString(registrationNumber,"A000AA000"));
         this.numberOfSeats = numberOfSeats <= 0 ? 1 : numberOfSeats;
-        this.summerTires = summerTires;
+        this.summerTires = validateBoolean(summerTires);
+        this.key = key;
     }
 
     public String getBrand(){
@@ -100,21 +105,41 @@ public class Car {
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
-
     public void setSummerTires(boolean summerTires) {
-        this.summerTires = summerTires;
+        this.summerTires = validateBoolean(summerTires);
     }
     public void changeTiresToSeasonal (int currentMonth) {
         if (currentMonth == 1 || currentMonth == 2 || currentMonth == 12){
             setSummerTires(false);
         } else setSummerTires(true);
     }
-
     /** Переписал toString под ноав данные
      *
      * @return было brand+" "+ model+ ", год выпуска: "+ year+ ", страна производства: "+ country+ ", цвет: "+ color+ ", объём двигателя: "+ engineVolume+ ".";
      */
     public String toString(){
-        return getBrand()+" "+ getModel()+ ", год выпуска: "+ getYear()+ ", страна производства: "+ getCountry()+ ", цвет: "+ getColor()+ ", объём двигателя: "+ getEngineVolume()+ ", коробка передач: "+ getTransmission()+ " , тип кузова: " + getBodyType()+ " , регистрационный номер: "+ getRegistrationNumber()+ " , количество мест: "+ getNumberOfSeats()+ " , признак Летняя резина: "+ isSummerTires()+ ".";
+        return getBrand()+" "+ getModel()+ ", год выпуска: "+ getYear()+ ", страна производства: "+ getCountry()+ ", цвет: "+ getColor()+ ", объём двигателя: "+ getEngineVolume()+ ", коробка передач: "+ getTransmission()+ " , тип кузова: " + getBodyType()+ " , регистрационный номер: "+ getRegistrationNumber()+ " , количество мест: "+ getNumberOfSeats()+ " , признак Летняя резина: "+ isSummerTires()+ key.toString();
+    }
+    public static class Key {
+        private final boolean remoteEngineStart;
+        private final boolean keylessAccess;
+        /** Создаю конструктор для ключей
+         * @param remoteEngineStart - Удаленный запуск двигателя
+         * @param keylessAccess - Бесключевой доступ
+         */
+        public Key(boolean remoteEngineStart, boolean keylessAccess) {
+            this.remoteEngineStart = validateBoolean(remoteEngineStart);
+            this.keylessAccess = validateBoolean(keylessAccess);
+        }
+        public boolean isRemoteEngineStart() {
+            return remoteEngineStart;
+        }
+        public boolean isKeylessAccess() {
+            return keylessAccess;
+        }
+        @Override
+        public String toString() {
+            return " , удаленный запуск двигателя: "+ isRemoteEngineStart() +" , бесключевой доступ: "+ isKeylessAccess() +".";
+        }
     }
 }
