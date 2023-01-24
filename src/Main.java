@@ -1,3 +1,4 @@
+import transport.Bus;
 import transport.Car;
 public class Main {
     public static void main(String[] args) {
@@ -26,5 +27,17 @@ public class Main {
         System.out.println("Проверяю смену шин");
         lada.changeTiresToSeasonal(12);
         System.out.println(lada);
+        System.out.println("");
+
+        System.out.println("Задача 2");
+        System.out.println("");
+
+        Bus ikarus = new Bus("Ikarus", "250", 1967 , "Россия", "красный", 120);
+        Bus mun = new Bus("Mun","Lion Star L", 2003, "Германия", "зелёный", 150);
+        Bus busHyundai = new Bus("Hyundai", "Universe Luxury", 2006, "Южная Корея", "желтый", 142);
+
+        System.out.println(ikarus);
+        System.out.println(mun);
+        System.out.println(busHyundai);
     }
 }
