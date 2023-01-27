@@ -4,15 +4,16 @@ import static Checks.ValidationUtilities.validateString;
 import static Checks.ValidationUtilities.validateBoolean;
 
 public class Car extends Transport {
-    private double engineVolume;
+    /*private double engineVolume;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
     private final int numberOfSeats;
     private boolean summerTires;
-    private Key key;
+    private Key key;*/
 
-    /** Создаю конструктор для автомобилей
+    /*
+     * Создаю конструктор для автомобилей
      *
      * @param engineVolume - объём двигателя
      * @param transmission - Коробка передач
@@ -21,18 +22,18 @@ public class Car extends Transport {
      * @param numberOfSeats - Количество мест
      * @param summerTires - признак Летняя или Зимняя резина
      */
-    public Car (String brand, String model, int yearOfIssue, String countryOfOrigin, String bodyColor, int maxMovementSpeed, double engineVolume, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires, Key key){
-        super(brand, model,yearOfIssue, countryOfOrigin, bodyColor, maxMovementSpeed);
-        this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
+    public Car(String brand, String model, double engineVolume) {
+        super(brand, model, engineVolume);
+        /*this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
         this.transmission = (validateString(transmission,"default"));
         this.bodyType = bodyType == null || bodyType.isBlank() ? "default" : bodyType;
         this.registrationNumber = (validateString(registrationNumber,"A000AA000"));
         this.numberOfSeats = numberOfSeats <= 0 ? 1 : numberOfSeats;
         this.summerTires = validateBoolean(summerTires);
-        this.key = key;
+        this.key = key;*/
     }
-
-    public double getEngineVolume(){
+}
+   /* public double getEngineVolume(){
         return this.engineVolume;
     }
 
@@ -74,12 +75,11 @@ public class Car extends Transport {
         if (currentMonth == 1 || currentMonth == 2 || currentMonth == 12){
             setSummerTires(false);
         } else setSummerTires(true);
-    }
-    /** Переписал toString под ноав данные
-     *
-     * @return было brand+" "+ model+ ", год выпуска: "+ year+ ", страна производства: "+ country+ ", цвет: "+ color+ ", объём двигателя: "+ engineVolume+ ".";
-     */
-    public String toString(){
+    }*/
+/*   * Переписал toString под ноав данные
+ *
+ * @return было brand+" "+ model+ ", год выпуска: "+ year+ ", страна производства: "+ country+ ", цвет: "+ color+ ", объём двигателя: "+ engineVolume+ ".";
+ */   /* public String toString(){
         return super.toString() +", объём двигателя: "+ getEngineVolume()+ ", коробка передач: "+ getTransmission()+ " , тип кузова: " + getBodyType()+ " , регистрационный номер: "+ getRegistrationNumber()+ " , количество мест: "+ getNumberOfSeats()+ " , признак Летняя резина: "+ isSummerTires()+ key.toString();
     }
     public static class Key {
@@ -89,7 +89,7 @@ public class Car extends Transport {
          * @param remoteEngineStart - Удаленный запуск двигателя
          * @param keylessAccess - Бесключевой доступ
          */
-        public Key(boolean remoteEngineStart, boolean keylessAccess) {
+     /*   public Key(boolean remoteEngineStart, boolean keylessAccess) {
             this.remoteEngineStart = validateBoolean(remoteEngineStart);
             this.keylessAccess = validateBoolean(keylessAccess);
         }
@@ -104,4 +104,4 @@ public class Car extends Transport {
             return " , удаленный запуск двигателя: "+ isRemoteEngineStart() +" , бесключевой доступ: "+ isKeylessAccess() +".";
         }
     }
-}
+}*/

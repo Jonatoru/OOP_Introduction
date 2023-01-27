@@ -1,7 +1,7 @@
 package transport;
 
 public class Bus extends Transport{
-    /**
+    /*
      * Парамметры
      *
      * @param brand            - Марка,
@@ -11,7 +11,7 @@ public class Bus extends Transport{
      * @param bodyColor        - Цвет кузова,
      * @param maxMovementSpeed - Максимальная скорость передвижения.
      */
-    public Bus(String brand, String model, int yearOfIssue, String countryOfOrigin, String bodyColor, int maxMovementSpeed) {
-        super(brand, model, yearOfIssue, countryOfOrigin, bodyColor, maxMovementSpeed);
+    public Bus(String brand, String model, double engineVolume) {
+        super(brand, model, engineVolume);
     }
 }

@@ -4,29 +4,31 @@ import static Checks.ValidationUtilities.validateString;
 
 public class Transport {
 
-    private final String brand;
-    private final String model;
-    private final int yearOfIssue;
+    private  String brand;
+    private  String model;
+    private double engineVolume;
+    /*private final int yearOfIssue;
     private final String countryOfOrigin;
     private String bodyColor;
-    private int maxMovementSpeed;
+    private int maxMovementSpeed;*/
 
     /** Парамметры
      * @param brand - Марка,
      * @param model - Модель,
-     * @param yearOfIssue - Год выпуска,
-     * @param countryOfOrigin - Страна производства,
-     * @param bodyColor - Цвет кузова,
-     * @param maxMovementSpeed - Максимальная скорость передвижения.
+    // * @param yearOfIssue - Год выпуска,
+   //  * @param countryOfOrigin - Страна производства,
+   //  * @param bodyColor - Цвет кузова,
+   //  * @param maxMovementSpeed - Максимальная скорость передвижения.
      */
 
-    public Transport(String brand, String model, int yearOfIssue, String countryOfOrigin, String bodyColor, int maxMovementSpeed) {
+    public Transport(String brand, String model, double engineVolume) {
         this.brand = (validateString(brand,"default"));
         this.model = (validateString(model,"default"));
-        this.yearOfIssue = yearOfIssue;
+        this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
+        /*this.yearOfIssue = yearOfIssue;
         this.countryOfOrigin = countryOfOrigin;
         this.bodyColor = (validateString(bodyColor, "default"));
-        this.maxMovementSpeed = maxMovementSpeed <= 0 ? 1 : maxMovementSpeed;
+        this.maxMovementSpeed = maxMovementSpeed <= 0 ? 1 : maxMovementSpeed;*/
     }
 
     public String getBrand() {
@@ -37,7 +39,36 @@ public class Transport {
         return model;
     }
 
-    public int getYearOfIssue() {
+    public double getEngineVolume() {
+        return engineVolume;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setEngineVolume(double engineVolume) {
+        this.engineVolume = engineVolume;
+    }
+
+    public void startMoving(){
+        System.out.println("Поехал!");
+    }
+
+    public void finishTheMove(){
+        System.out.println("Остановился!");
+    }
+
+    @Override
+    public String toString() {
+        return getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +".";
+    }
+
+    /*public int getYearOfIssue() {
         return yearOfIssue;
     }
 
@@ -64,5 +95,5 @@ public class Transport {
     @Override
     public String toString() {
         return getBrand()+" "+ getModel()+ ", год выпуска: "+ getYearOfIssue()+ ", страна производства: "+ getCountryOfOrigin()+ ", цвет: "+ getBodyColor()+ ", максимальная скорость: "+ getMaxMovementSpeed();
-    }
+    }*/
 }
