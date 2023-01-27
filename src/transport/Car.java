@@ -3,13 +3,8 @@ package transport;
 import static Checks.ValidationUtilities.validateString;
 import static Checks.ValidationUtilities.validateBoolean;
 
-public class Car {
-    private final String brand;
-    private final String model;
+public class Car extends Transport {
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
@@ -19,25 +14,16 @@ public class Car {
 
     /** Создаю конструктор для автомобилей
      *
-     * @param brand - марка
-     * @param model - модель
      * @param engineVolume - объём двигателя
-     * @param color - цвет
-     * @param year - год
-     * @param country - страна проиводитель
      * @param transmission - Коробка передач
      * @param bodyType - Тип кузова
      * @param registrationNumber - Регистрационный номер
      * @param numberOfSeats - Количество мест
      * @param summerTires - признак Летняя или Зимняя резина
      */
-    public Car (String brand, String model, double engineVolume, String color, int year, String country, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires, Key key){
-        this.brand = (validateString(brand,"default"));
-        this.model = (validateString(model,"default"));
+    public Car (String brand, String model, int yearOfIssue, String countryOfOrigin, String bodyColor, int maxMovementSpeed, double engineVolume, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires, Key key){
+        super(brand, model,yearOfIssue, countryOfOrigin, bodyColor, maxMovementSpeed);
         this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
-        this.color = color == null || color.isBlank() ? "белый" : color;
-        this.year = year <= 0 ? 2000 : year;
-        this.country = (validateString(country,"default"));
         this.transmission = (validateString(transmission,"default"));
         this.bodyType = bodyType == null || bodyType.isBlank() ? "default" : bodyType;
         this.registrationNumber = (validateString(registrationNumber,"A000AA000"));
@@ -46,28 +32,8 @@ public class Car {
         this.key = key;
     }
 
-    public String getBrand(){
-        return this.brand;
-    }
-
-    public String getModel(){
-        return  this.model;
-    }
-
     public double getEngineVolume(){
         return this.engineVolume;
-    }
-
-    public String getColor(){
-        return this.color;
-    }
-
-    public int getYear(){
-        return this.year;
-    }
-
-    public String getCountry(){
-        return  this.country;
     }
 
     public String getBodyType() {
@@ -94,10 +60,6 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public void setTransmission(String transmission) {
         this.transmission = transmission;
     }
@@ -118,7 +80,7 @@ public class Car {
      * @return было brand+" "+ model+ ", год выпуска: "+ year+ ", страна производства: "+ country+ ", цвет: "+ color+ ", объём двигателя: "+ engineVolume+ ".";
      */
     public String toString(){
-        return getBrand()+" "+ getModel()+ ", год выпуска: "+ getYear()+ ", страна производства: "+ getCountry()+ ", цвет: "+ getColor()+ ", объём двигателя: "+ getEngineVolume()+ ", коробка передач: "+ getTransmission()+ " , тип кузова: " + getBodyType()+ " , регистрационный номер: "+ getRegistrationNumber()+ " , количество мест: "+ getNumberOfSeats()+ " , признак Летняя резина: "+ isSummerTires()+ key.toString();
+        return super.toString() +", объём двигателя: "+ getEngineVolume()+ ", коробка передач: "+ getTransmission()+ " , тип кузова: " + getBodyType()+ " , регистрационный номер: "+ getRegistrationNumber()+ " , количество мест: "+ getNumberOfSeats()+ " , признак Летняя резина: "+ isSummerTires()+ key.toString();
     }
     public static class Key {
         private final boolean remoteEngineStart;
