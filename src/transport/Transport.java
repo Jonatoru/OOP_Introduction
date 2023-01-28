@@ -1,12 +1,15 @@
 package transport;
+import drivers.Driver;
 
 import static Checks.ValidationUtilities.validateString;
 
-public abstract class Transport {
+public abstract class Transport <T extends Driver>{
 
     private  String brand;
     private  String model;
     private double engineVolume;
+
+    private T driver;
     /*private final int yearOfIssue;
     private final String countryOfOrigin;
     private String bodyColor;
@@ -21,10 +24,11 @@ public abstract class Transport {
    //  * @param maxMovementSpeed - Максимальная скорость передвижения.
      */
 
-    public Transport(String brand, String model, double engineVolume) {
+    public Transport(String brand, String model, double engineVolume, T driver) {
         this.brand = (validateString(brand,"default"));
         this.model = (validateString(model,"default"));
         this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
+        this.driver = driver;
         /*this.yearOfIssue = yearOfIssue;
         this.countryOfOrigin = countryOfOrigin;
         this.bodyColor = (validateString(bodyColor, "default"));
@@ -43,6 +47,10 @@ public abstract class Transport {
         return engineVolume;
     }
 
+    public T getDriver() {
+        return driver;
+    }
+
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -55,6 +63,10 @@ public abstract class Transport {
         this.engineVolume = engineVolume;
     }
 
+    public void setDriver(T driver) {
+        this.driver = driver;
+    }
+
     public void startMoving(){
         System.out.println("Поехал!");
     }
@@ -65,7 +77,7 @@ public abstract class Transport {
 
     @Override
     public String toString() {
-        return getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +".";
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume();
     }
 
     /*public int getYearOfIssue() {

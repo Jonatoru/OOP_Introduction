@@ -1,9 +1,10 @@
 package transport;
+import drivers.CategoryB;
 
 import static Checks.ValidationUtilities.validateString;
 import static Checks.ValidationUtilities.validateBoolean;
 
-public class Car extends Transport {
+public class Car <T extends CategoryB> extends Transport implements Competing{
     /*private double engineVolume;
     private String transmission;
     private final String bodyType;
@@ -22,8 +23,8 @@ public class Car extends Transport {
      * @param numberOfSeats - Количество мест
      * @param summerTires - признак Летняя или Зимняя резина
      */
-    public Car(String brand, String model, double engineVolume) {
-        super(brand, model, engineVolume);
+    public Car(String brand, String model, double engineVolume, CategoryB categoryB) {
+        super(brand, model, engineVolume, categoryB);
         /*this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
         this.transmission = (validateString(transmission,"default"));
         this.bodyType = bodyType == null || bodyType.isBlank() ? "default" : bodyType;
@@ -31,6 +32,21 @@ public class Car extends Transport {
         this.numberOfSeats = numberOfSeats <= 0 ? 1 : numberOfSeats;
         this.summerTires = validateBoolean(summerTires);
         this.key = key;*/
+    }
+
+    @Override
+    public void pitStop() {
+        System.out.println("Пит-стоп у легкового автомобиля");
+    }
+
+    @Override
+    public void bestLapTime() {
+        System.out.println("Лучшее время круга среди легковых автомобилей");
+    }
+
+    @Override
+    public void maxSpeed() {
+        System.out.println("Максимальная скорость среди легковых автомобилей");
     }
 }
    /* public double getEngineVolume(){
