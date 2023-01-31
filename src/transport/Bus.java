@@ -1,5 +1,6 @@
 package transport;
 import drivers.CategoryD;
+import enums.Capacity;
 
 public class Bus <T extends CategoryD> extends Transport implements Competing{
     /*
@@ -12,8 +13,18 @@ public class Bus <T extends CategoryD> extends Transport implements Competing{
      * @param bodyColor        - Цвет кузова,
      * @param maxMovementSpeed - Максимальная скорость передвижения.
      */
-    public Bus(String brand, String model, double engineVolume, CategoryD categoryD) {
+    private Capacity capacity;
+    public Bus(String brand, String model, double engineVolume, CategoryD categoryD, Capacity capacity) {
         super(brand, model, engineVolume, categoryD);
+        this.capacity = capacity;
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity;
     }
 
     @Override
@@ -29,5 +40,19 @@ public class Bus <T extends CategoryD> extends Transport implements Competing{
     @Override
     public void maxSpeed() {
         System.out.println("Максимальная скорость среди автобусов");
+    }
+
+    public String toString() {
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getCapacity().toString();
+    }
+
+    @Override
+    public void printType() {
+        if (getCapacity() == null){
+            System.out.println("Данных по транспортному средству не достаточно");
+        } else {
+
+            System.out.println(getCapacity());
+        }
     }
 }

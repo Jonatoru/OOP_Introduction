@@ -1,8 +1,6 @@
 package transport;
 import drivers.CategoryB;
-
-import static Checks.ValidationUtilities.validateString;
-import static Checks.ValidationUtilities.validateBoolean;
+import enums.BodyType;
 
 public class Car <T extends CategoryB> extends Transport implements Competing{
     /*private double engineVolume;
@@ -23,8 +21,10 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
      * @param numberOfSeats - Количество мест
      * @param summerTires - признак Летняя или Зимняя резина
      */
-    public Car(String brand, String model, double engineVolume, CategoryB categoryB) {
+    private BodyType bodyType;
+    public Car(String brand, String model, double engineVolume, CategoryB categoryB, BodyType bodyType) {
         super(brand, model, engineVolume, categoryB);
+        this.bodyType = bodyType;
         /*this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
         this.transmission = (validateString(transmission,"default"));
         this.bodyType = bodyType == null || bodyType.isBlank() ? "default" : bodyType;
@@ -32,6 +32,14 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
         this.numberOfSeats = numberOfSeats <= 0 ? 1 : numberOfSeats;
         this.summerTires = validateBoolean(summerTires);
         this.key = key;*/
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
     }
 
     @Override
@@ -47,6 +55,19 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
     @Override
     public void maxSpeed() {
         System.out.println("Максимальная скорость среди легковых автомобилей");
+    }
+    public String toString() {
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getBodyType().toString();
+    }
+
+    @Override
+    public void printType() {
+        if (getBodyType() == null){
+            System.out.println("Данных по транспортному средству не достаточно");
+        } else {
+
+            System.out.println(getBodyType());
+        }
     }
 }
    /* public double getEngineVolume(){

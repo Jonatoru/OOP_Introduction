@@ -1,9 +1,21 @@
 package transport;
 import drivers.CategoryC;
+import enums.LoadCapacity;
 
 public class Trucks <T extends CategoryC> extends Transport implements Competing{
-    public Trucks (String brand, String model, double engineVolume, CategoryC categoryC){
+
+    private LoadCapacity loadCapacity;
+    public Trucks (String brand, String model, double engineVolume, CategoryC categoryC, LoadCapacity loadCapacity){
         super(brand, model, engineVolume, categoryC);
+        this.loadCapacity = loadCapacity;
+    }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
@@ -19,5 +31,19 @@ public class Trucks <T extends CategoryC> extends Transport implements Competing
     @Override
     public void maxSpeed() {
         System.out.println("Максимальная скорость среди грузовков");
+    }
+
+    public String toString() {
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getLoadCapacity().toString();
+    }
+
+    @Override
+    public void printType() {
+        if (getLoadCapacity() == null){
+            System.out.println("Данных по транспортному средству не достаточно");
+        } else {
+
+            System.out.println(getLoadCapacity());
+        }
     }
 }
