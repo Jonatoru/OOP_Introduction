@@ -1,6 +1,7 @@
 package transport;
 import drivers.CategoryD;
 import enums.Capacity;
+import exceptions.TransportTypeException;
 
 public class Bus <T extends CategoryD> extends Transport implements Competing{
     /*
@@ -54,5 +55,10 @@ public class Bus <T extends CategoryD> extends Transport implements Competing{
 
             System.out.println(getCapacity());
         }
+    }
+
+    @Override
+    public void passDiagnostics() throws TransportTypeException{
+        throw  new TransportTypeException("Автобусы проходить диагностику не должны");
     }
 }

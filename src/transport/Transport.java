@@ -1,5 +1,6 @@
 package transport;
 import drivers.Driver;
+import exceptions.TransportTypeException;
 
 import static Checks.ValidationUtilities.validateString;
 
@@ -80,6 +81,8 @@ public abstract class Transport <T extends Driver>{
     }
 
     public abstract void printType();
+
+    public abstract void passDiagnostics() throws TransportTypeException;
     /*public int getYearOfIssue() {
         return yearOfIssue;
     }
