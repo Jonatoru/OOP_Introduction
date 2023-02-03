@@ -1,10 +1,11 @@
-import transport.Bus;
-import transport.Car;
-import transport.Transport;
-import transport.Trucks;
+import enums.BodyType;
+import enums.Capacity;
+import enums.LoadCapacity;
+import transport.*;
 import drivers.CategoryB;
 import drivers.CategoryC;
 import drivers.CategoryD;
+import transport.Car.*;
 
 public class Main {
     private static void infoPrinting (Transport transport){
@@ -48,7 +49,6 @@ public class Main {
         System.out.println(ikarus);
         System.out.println(mun);
         System.out.println(busHyundai);*/
-
         System.out.println("Задача 1");
         System.out.println("");
 
@@ -67,76 +67,45 @@ public class Main {
         CategoryD eleven = new CategoryD("Опушкин Д А", true, 36);
         CategoryD twelve = new CategoryD("Сучков Л Л", true, 19);
 
-        Car lada = new Car ("Lada","Granta",  1.7, one);
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, two);
-        Car bmw = new Car("BMW","Z8", 3.0, three);
-        Car kia = new Car("Kia", "Sportage 4-го поколения", 2.4, four);
+        Car lada = new Car ("Lada","Granta",  1.7, one, BodyType.sedan);
+        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, two, BodyType.sedan);
+        Car bmw = new Car("BMW","Z8", 3.0, three, BodyType.coupe);
+        Car kia = new Car("Kia", "Sportage 4-го поколения", 2.4, four, BodyType.crossover);
 
-        Bus ikarus = new Bus("Ikarus", "250", 10.0, nine);
-        Bus mun = new Bus("Mun","Lion Star L", 11.9, ten);
-        Bus busHyundai = new Bus("Hyundai", "Universe Luxury", 12.3, eleven);
-        Bus busKia = new Bus("KIA", "Granbird", 11.2, twelve);
+        Bus ikarus = new Bus("Ikarus", "250", 10.0, nine, Capacity.especiallySmall);
+        Bus mun = new Bus("Mun","Lion Star L", 11.9, ten, Capacity.small);
+        Bus busHyundai = new Bus("Hyundai", "Universe Luxury", 12.3, eleven, Capacity.big);
+        Bus busKia = new Bus("KIA", "Granbird", 11.2, twelve, Capacity.extraLarge
+        );
 
-        Trucks kamAZ = new Trucks("KamAZ", "4326/2017", 13, five);
-        Trucks mercedesBenz = new Trucks("Mercedes Benz", "Actros 4-го поколения", 12, six);
-        Trucks volvo = new Trucks("Volvo", "FH", 12.8, seven);
-        Trucks daf = new Trucks("DAF", "XF", 12.9, eight);
+        Trucks kamAZ = new Trucks("KamAZ", "4326/2017", 13, five, LoadCapacity.N3);
+        Trucks mercedesBenz = new Trucks("Mercedes Benz", "Actros 4-го поколения", 12, six, LoadCapacity.N2);
+        Trucks volvo = new Trucks("Volvo", "FH", 12.8, seven, LoadCapacity.N1);
+        Trucks daf = new Trucks("DAF", "XF", 12.9, eight, LoadCapacity.N3);
 
         System.out.println("Легковые автомодили:");
         System.out.println(lada);
         System.out.println(audi);
         System.out.println(bmw);
         System.out.println(kia);
-        lada.startMoving();
-        lada.finishTheMove();
         System.out.println("");
         System.out.println("Автобусы:");
         System.out.println(ikarus);
         System.out.println(mun);
         System.out.println(busHyundai);
         System.out.println(busKia);
-        ikarus.startMoving();
-        ikarus.finishTheMove();
         System.out.println("");
         System.out.println("Грузовые автомобили:");
         System.out.println(kamAZ);
         System.out.println(mercedesBenz);
         System.out.println(volvo);
         System.out.println(daf);
-        kamAZ.startMoving();
-        kamAZ.finishTheMove();
 
         System.out.println("");
-        System.out.println("Задача 3");
+        System.out.println("Задача 2");
         System.out.println("");
-        bmw.pitStop();
-        bmw.bestLapTime();
-        bmw.maxSpeed();
-        System.out.println("");
-        busHyundai.pitStop();
-        busHyundai.bestLapTime();
-        busHyundai.maxSpeed();
-        System.out.println(" ");
-        volvo.pitStop();
-        volvo.bestLapTime();
-        volvo.maxSpeed();
-
-        System.out.println("");
-        System.out.println("Задача 4");
-        System.out.println("");
-        infoPrinting(lada);
-        infoPrinting(audi);
-        infoPrinting(bmw);
-        infoPrinting(kia);
-        System.out.println("");
-        infoPrinting(kamAZ);
-        infoPrinting(mercedesBenz);
-        infoPrinting(volvo);
-        infoPrinting(daf);
-        System.out.println("");
-        infoPrinting(ikarus);
-        infoPrinting(mun);
-        infoPrinting(busHyundai);
-        infoPrinting(busKia);
+        lada.printType();
+        kamAZ.printType();
+        ikarus.printType();
     }
 }

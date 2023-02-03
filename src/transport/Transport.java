@@ -4,7 +4,6 @@ import drivers.Driver;
 import static Checks.ValidationUtilities.validateString;
 
 public abstract class Transport <T extends Driver>{
-
     private  String brand;
     private  String model;
     private double engineVolume;
@@ -80,6 +79,7 @@ public abstract class Transport <T extends Driver>{
         return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume();
     }
 
+    public abstract void printType();
     /*public int getYearOfIssue() {
         return yearOfIssue;
     }
