@@ -1,12 +1,15 @@
 package transport;
 import drivers.CategoryC;
 import enums.LoadCapacity;
+import mechanics.Mechanics;
+
+import java.util.List;
 
 public class Trucks <T extends CategoryC> extends Transport implements Competing{
 
     private LoadCapacity loadCapacity;
-    public Trucks (String brand, String model, double engineVolume, CategoryC categoryC, LoadCapacity loadCapacity){
-        super(brand, model, engineVolume, categoryC);
+    public Trucks (String brand, String model, double engineVolume, CategoryC categoryC, LoadCapacity loadCapacity, List<Mechanics> mechanicsList){
+        super(brand, model, engineVolume, categoryC, mechanicsList);
         this.loadCapacity = loadCapacity;
     }
 
@@ -34,7 +37,7 @@ public class Trucks <T extends CategoryC> extends Transport implements Competing
     }
 
     public String toString() {
-        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getLoadCapacity().toString();
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getLoadCapacity().toString() +". "+ getMechanicsList().toString();
     }
 
     @Override
@@ -50,5 +53,10 @@ public class Trucks <T extends CategoryC> extends Transport implements Competing
     @Override
     public void passDiagnostics() {
         System.out.println("Грузовой автомобиль " + getBrand() +" "+ getModel() +" проходит диагностику.");
+    }
+
+    @Override
+    public String repair() {
+        return "Ремонтируем грузовик";
     }
 }

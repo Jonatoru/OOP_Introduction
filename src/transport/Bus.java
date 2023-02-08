@@ -2,6 +2,9 @@ package transport;
 import drivers.CategoryD;
 import enums.Capacity;
 import exceptions.TransportTypeException;
+import mechanics.Mechanics;
+
+import java.util.List;
 
 public class Bus <T extends CategoryD> extends Transport implements Competing{
     /*
@@ -15,8 +18,8 @@ public class Bus <T extends CategoryD> extends Transport implements Competing{
      * @param maxMovementSpeed - Максимальная скорость передвижения.
      */
     private Capacity capacity;
-    public Bus(String brand, String model, double engineVolume, CategoryD categoryD, Capacity capacity) {
-        super(brand, model, engineVolume, categoryD);
+    public Bus(String brand, String model, double engineVolume, CategoryD categoryD, Capacity capacity, List<Mechanics> mechanicsList) {
+        super(brand, model, engineVolume, categoryD, mechanicsList);
         this.capacity = capacity;
     }
 
@@ -44,7 +47,7 @@ public class Bus <T extends CategoryD> extends Transport implements Competing{
     }
 
     public String toString() {
-        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getCapacity().toString();
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getCapacity().toString() +". "+ getMechanicsList().toString();
     }
 
     @Override
@@ -60,5 +63,10 @@ public class Bus <T extends CategoryD> extends Transport implements Competing{
     @Override
     public void passDiagnostics() throws TransportTypeException{
         throw  new TransportTypeException("Автобусы проходить диагностику не должны");
+    }
+
+    @Override
+    public String repair() {
+        return "Ремонтирум автобус";
     }
 }

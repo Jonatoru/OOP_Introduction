@@ -1,6 +1,9 @@
 package transport;
 import drivers.CategoryB;
 import enums.BodyType;
+import mechanics.Mechanics;
+
+import java.util.List;
 
 public class Car <T extends CategoryB> extends Transport implements Competing{
     /*private double engineVolume;
@@ -22,8 +25,8 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
      * @param summerTires - признак Летняя или Зимняя резина
      */
     private BodyType bodyType;
-    public Car(String brand, String model, double engineVolume, CategoryB categoryB, BodyType bodyType) {
-        super(brand, model, engineVolume, categoryB);
+    public Car(String brand, String model, double engineVolume, CategoryB categoryB, BodyType bodyType, List<Mechanics> mechanicsList) {
+        super(brand, model, engineVolume, categoryB, mechanicsList);
         this.bodyType = bodyType;
         /*this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
         this.transmission = (validateString(transmission,"default"));
@@ -57,7 +60,7 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
         System.out.println("Максимальная скорость среди легковых автомобилей");
     }
     public String toString() {
-        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getBodyType().toString();
+        return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume() +". "+ getBodyType().toString() +". "+ getMechanicsList().toString();
     }
 
     @Override
@@ -73,6 +76,11 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
     @Override
     public void passDiagnostics() {
         System.out.println("Легковой автомобиль " + getBrand() +" "+ getModel() +" проходит диагностику.");
+    }
+
+    @Override
+    public String repair() {
+        return "Ремонтируем машину";
     }
 }
    /* public double getEngineVolume(){
