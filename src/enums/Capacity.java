@@ -1,11 +1,11 @@
 package enums;
 
 public enum Capacity {
-    especiallySmall (0, 10),
-    small (0, 25),
-    average (25, 50),
-    big (50, 80),
-    extraLarge (80, 120);
+    ESPECIALLY_SMALL(0, 10),
+    SMALL(0, 25),
+    AVERAGE(25, 50),
+    BIG(50, 80),
+    EXTRA_LARGE(80, 120);
 
     Integer bottomLine;
     Integer upperBound;

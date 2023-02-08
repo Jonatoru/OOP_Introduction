@@ -46,4 +46,9 @@ public class Trucks <T extends CategoryC> extends Transport implements Competing
             System.out.println(getLoadCapacity());
         }
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Грузовой автомобиль " + getBrand() +" "+ getModel() +" проходит диагностику.");
+    }
 }

@@ -69,6 +69,11 @@ public class Car <T extends CategoryB> extends Transport implements Competing{
             System.out.println(getBodyType());
         }
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Легковой автомобиль " + getBrand() +" "+ getModel() +" проходит диагностику.");
+    }
 }
    /* public double getEngineVolume(){
         return this.engineVolume;

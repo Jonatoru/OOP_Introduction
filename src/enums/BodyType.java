@@ -1,15 +1,15 @@
 package enums;
 
 public enum BodyType {
-    sedan("Седан"),
-    hatchback("Хетчбэк"),
-    coupe("Купе"),
-    stationWagon("Универсал"),
+    SEDAN("Седан"),
+    HATCHBACK("Хетчбэк"),
+    COUPE("Купе"),
+    STATION_WAGON("Универсал"),
     SUV("Внедорожник"),
-    crossover("Кроссовер"),
-    pickup("Пикап"),
-    van("Фургон"),
-    minivan("Минивэн");
+    CROSSOVER("Кроссовер"),
+    PICKUP("Пикап"),
+    VAN("Фургон"),
+    MINIVAN("Минивэн");
 
     private String name;
 
