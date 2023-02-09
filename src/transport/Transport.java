@@ -1,6 +1,10 @@
 package transport;
 import drivers.Driver;
 import exceptions.TransportTypeException;
+import mechanics.Mechanics;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Checks.ValidationUtilities.validateString;
 
@@ -10,6 +14,8 @@ public abstract class Transport <T extends Driver>{
     private double engineVolume;
 
     private T driver;
+
+    private List <Mechanics> mechanicsList;
     /*private final int yearOfIssue;
     private final String countryOfOrigin;
     private String bodyColor;
@@ -24,11 +30,12 @@ public abstract class Transport <T extends Driver>{
    //  * @param maxMovementSpeed - Максимальная скорость передвижения.
      */
 
-    public Transport(String brand, String model, double engineVolume, T driver) {
+    public Transport(String brand, String model, double engineVolume, T driver, List <Mechanics> mechanicsList) {
         this.brand = (validateString(brand,"default"));
         this.model = (validateString(model,"default"));
         this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;
         this.driver = driver;
+        this.mechanicsList = mechanicsList;
         /*this.yearOfIssue = yearOfIssue;
         this.countryOfOrigin = countryOfOrigin;
         this.bodyColor = (validateString(bodyColor, "default"));
@@ -75,6 +82,14 @@ public abstract class Transport <T extends Driver>{
         System.out.println("Остановился!");
     }
 
+    public List<Mechanics> getMechanicsList() {
+        return mechanicsList;
+    }
+
+    public void setMechanicsList(List<Mechanics> mechanicsList) {
+        this.mechanicsList = mechanicsList;
+    }
+
     @Override
     public String toString() {
         return  getBrand() +" "+ getModel() +", объём двигателя: " + getEngineVolume();
@@ -83,6 +98,17 @@ public abstract class Transport <T extends Driver>{
     public abstract void printType();
 
     public abstract void passDiagnostics() throws TransportTypeException;
+
+    public boolean checkTransportNeedService(){
+        try {
+            passDiagnostics();
+        }catch (TransportTypeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public abstract String repair();
     /*public int getYearOfIssue() {
         return yearOfIssue;
     }

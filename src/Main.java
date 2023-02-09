@@ -1,10 +1,17 @@
 import enums.BodyType;
 import enums.Capacity;
 import enums.LoadCapacity;
+import mechanics.ServiceStation;
 import transport.*;
 import drivers.CategoryB;
 import drivers.CategoryC;
 import drivers.CategoryD;
+import mechanics.Mechanics;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
 public class Main {
     private static void infoPrinting (Transport transport){
@@ -48,6 +55,7 @@ public class Main {
         System.out.println(ikarus);
         System.out.println(mun);
         System.out.println(busHyundai);*/
+
         System.out.println("Задача 1");
         System.out.println("");
 
@@ -66,23 +74,62 @@ public class Main {
         CategoryD eleven = new CategoryD("Опушкин Д А", true, 36);
         CategoryD twelve = new CategoryD("Сучков Л Л", true, 19);
 
-        Car lada = new Car ("Lada","Granta",  1.7, one, BodyType.SEDAN);
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, two, BodyType.SEDAN);
-        Car bmw = new Car("BMW","Z8", 3.0, three, BodyType.COUPE);
-        Car kia = new Car("Kia", "Sportage 4-го поколения", 2.4, four, BodyType.CROSSOVER);
+        Mechanics tod = new Mechanics("Тод Тод", "Газпром");
+        Mechanics bob = new Mechanics("Боб Боб", "Гайки и железки");
+        Mechanics empty = new Mechanics("", "");
 
-        Bus ikarus = new Bus("Ikarus", "250", 10.0, nine, Capacity.ESPECIALLY_SMALL);
-        Bus mun = new Bus("Mun","Lion Star L", 11.9, ten, Capacity.SMALL);
-        Bus busHyundai = new Bus("Hyundai", "Universe Luxury", 12.3, eleven, Capacity.BIG);
-        Bus busKia = new Bus("KIA", "Granbird", 11.2, twelve, Capacity.EXTRA_LARGE
-        );
+        List<Transport> racingСar = new ArrayList();
+        Transport lada = new Car ("Lada","Granta",  1.7, one, BodyType.SEDAN,List.of(tod));
+        Transport audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, two, BodyType.SEDAN,List.of(tod));
+        Transport bmw = new Car("BMW","Z8", 3.0, three, BodyType.COUPE, List.of(bob));
+        Transport kia = new Car("Kia", "Sportage 4-го поколения", 2.4, four, BodyType.CROSSOVER, List.of(empty));
 
-        Trucks kamAZ = new Trucks("KamAZ", "4326/2017", 13, five, LoadCapacity.N3);
-        Trucks mercedesBenz = new Trucks("Mercedes Benz", "Actros 4-го поколения", 12, six, LoadCapacity.N2);
-        Trucks volvo = new Trucks("Volvo", "FH", 12.8, seven, LoadCapacity.N1);
-        Trucks daf = new Trucks("DAF", "XF", 12.9, eight, LoadCapacity.N3);
+        Transport ikarus = new Bus("Ikarus", "250", 10.0, nine, Capacity.ESPECIALLY_SMALL, List.of(bob));
+        Transport mun = new Bus("Mun","Lion Star L", 11.9, ten, Capacity.SMALL, List.of(bob));
+        Transport busHyundai = new Bus("Hyundai", "Universe Luxury", 12.3, eleven, Capacity.BIG, List.of(tod));
+        Transport busKia = new Bus("KIA", "Granbird", 11.2, twelve, Capacity.EXTRA_LARGE, List.of(empty));
 
-        System.out.println("Легковые автомодили:");
+        Transport kamAZ = new Trucks("KamAZ", "4326/2017", 13, five, LoadCapacity.N3, List.of(bob));
+        Transport mercedesBenz = new Trucks("Mercedes Benz", "Actros 4-го поколения", 12, six, LoadCapacity.N2, List.of(tod));
+        Transport volvo = new Trucks("Volvo", "FH", 12.8, seven, LoadCapacity.N1, List.of(empty));
+        Transport daf = new Trucks("DAF", "XF", 12.9, eight, LoadCapacity.N3, List.of(tod));
+
+        racingСar.add(lada);
+        racingСar.add(audi);
+        racingСar.add(bmw);
+        racingСar.add(kia);
+        racingСar.add(ikarus);
+        racingСar.add(mun);
+        racingСar.add(busHyundai);
+        racingСar.add(busKia);
+        racingСar.add(kamAZ);
+        racingСar.add(mercedesBenz);
+        racingСar.add(volvo);
+        racingСar.add(daf);
+
+        System.out.println(racingСar.get(0));
+        System.out.println(racingСar.get(7));
+        System.out.println(racingСar.get(9));
+
+        bob.fixTheCar(ikarus);
+        bob.carryOutMaintenance(lada);
+
+        System.out.println("");
+        System.out.println("Задача 2");
+        System.out.println("");
+
+        Queue<Transport> transportsToSTO = new ArrayDeque<>();
+
+        ServiceStation sto = new ServiceStation(transportsToSTO);
+
+        for (Transport transport: racingСar) {
+            sto.addTransport(transport);
+        }
+
+        for (int i = 0; i <= transportsToSTO.size(); i++){
+            sto.carryOutVehicleInspection(transportsToSTO);
+        }
+        /*System.out.println("Легковые автомодили:");
         System.out.println(lada);
         System.out.println(audi);
         System.out.println(bmw);
@@ -104,7 +151,7 @@ public class Main {
         System.out.println("Проводим диагностику");
         lada.passDiagnostics();
         kamAZ.passDiagnostics();
-        ikarus.passDiagnostics();
+        ikarus.passDiagnostics();*/
 
     }
 }
