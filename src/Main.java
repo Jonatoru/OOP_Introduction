@@ -8,10 +8,7 @@ import drivers.CategoryC;
 import drivers.CategoryD;
 import mechanics.Mechanics;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Main {
     private static void infoPrinting (Transport transport){
@@ -107,18 +104,26 @@ public class Main {
         racingСar.add(volvo);
         racingСar.add(daf);
 
-        System.out.println(racingСar.get(0));
-        System.out.println(racingСar.get(7));
-        System.out.println(racingСar.get(9));
+        Map<List<Transport>, List<Mechanics>> steamCarMechanic = new HashMap<>();
+        steamCarMechanic.put(List.of(lada), List.of(tod));
+        steamCarMechanic.put(List.of(audi), List.of(tod));
+        steamCarMechanic.put(List.of(bmw), List.of(bob));
+        steamCarMechanic.put(List.of(kia), List.of(empty));
+        steamCarMechanic.put(List.of(ikarus), List.of(bob));
+        steamCarMechanic.put(List.of(mun), List.of(bob));
+        steamCarMechanic.put(List.of(busHyundai), List.of(tod));
+        steamCarMechanic.put(List.of(busKia), List.of(empty));
+        steamCarMechanic.put(List.of(kamAZ), List.of(bob));
+        steamCarMechanic.put(List.of(mercedesBenz), List.of(tod));
+        steamCarMechanic.put(List.of(volvo), List.of(empty));
+        steamCarMechanic.put(List.of(daf), List.of(tod));
 
-        bob.fixTheCar(ikarus);
-        bob.carryOutMaintenance(lada);
-
-        System.out.println("");
-        System.out.println("Задача 2");
-        System.out.println("");
-
-        Queue<Transport> transportsToSTO = new ArrayDeque<>();
+        System.out.println("Список автомодиль - механик:");
+        for (Map.Entry<List<Transport>, List<Mechanics>> steam: steamCarMechanic.entrySet()) {
+            System.out.println("");
+            System.out.println(steam.getKey()+ " "+ steam.getValue());
+        }
+        /*Queue<Transport> transportsToSTO = new ArrayDeque<>();
 
         ServiceStation sto = new ServiceStation(transportsToSTO);
 
@@ -128,7 +133,9 @@ public class Main {
 
         for (int i = 0; i <= transportsToSTO.size(); i++){
             sto.carryOutVehicleInspection(transportsToSTO);
-        }
+        }*/
+
+
         /*System.out.println("Легковые автомодили:");
         System.out.println(lada);
         System.out.println(audi);
