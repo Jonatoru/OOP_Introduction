@@ -1,3 +1,4 @@
+import drivers.Driver;
 import enums.BodyType;
 import enums.Capacity;
 import enums.LoadCapacity;
@@ -122,6 +123,26 @@ public class Main {
         for (Map.Entry<Transport, List<Mechanics>> steam: steamCarMechanic.entrySet()) {
             System.out.println("");
             System.out.println(steam.getKey()+ " "+ steam.getValue());
+        }
+
+        Set<Driver> drivers = new HashSet<>();
+        drivers.add(one);
+        drivers.add(two);
+        drivers.add(three);
+        drivers.add(four);
+        drivers.add(five);
+        drivers.add(six);
+        drivers.add(seven);
+        drivers.add(eight);
+        drivers.add(nine);
+        drivers.add(ten);
+        drivers.add(eleven);
+        drivers.add(twelve);
+        drivers.add(one);
+
+        Iterator<Driver> driverIterator = drivers.iterator();
+        while (driverIterator.hasNext()){
+            System.out.println(driverIterator.next());
         }
         /*Queue<Transport> transportsToSTO = new ArrayDeque<>();
 

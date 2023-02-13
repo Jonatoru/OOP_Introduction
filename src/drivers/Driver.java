@@ -1,4 +1,6 @@
 package drivers;
+import java.util.Objects;
+
 import static Checks.ValidationUtilities.validateString;
 import static Checks.ValidationUtilities.validateBoolean;
 
@@ -53,6 +55,19 @@ public abstract class Driver {
 
     public  void refuelTheCar(){
         System.out.println("Заправлю авто");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return havingDriverIsLicense == driver.havingDriverIsLicense && experience == driver.experience && Objects.equals(fullNameOfTheDriver, driver.fullNameOfTheDriver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullNameOfTheDriver, havingDriverIsLicense, experience);
     }
 
     @Override
