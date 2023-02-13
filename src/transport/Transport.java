@@ -5,6 +5,7 @@ import mechanics.Mechanics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static Checks.ValidationUtilities.validateString;
 
@@ -88,6 +89,19 @@ public abstract class Transport <T extends Driver>{
 
     public void setMechanicsList(List<Mechanics> mechanicsList) {
         this.mechanicsList = mechanicsList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport<?> transport = (Transport<?>) o;
+        return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(driver, transport.driver) && Objects.equals(mechanicsList, transport.mechanicsList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, driver, mechanicsList);
     }
 
     @Override

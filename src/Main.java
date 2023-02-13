@@ -91,7 +91,7 @@ public class Main {
         Transport volvo = new Trucks("Volvo", "FH", 12.8, seven, LoadCapacity.N1, List.of(empty));
         Transport daf = new Trucks("DAF", "XF", 12.9, eight, LoadCapacity.N3, List.of(tod));
 
-        racingСar.add(lada);
+        /*racingСar.add(lada);
         racingСar.add(audi);
         racingСar.add(bmw);
         racingСar.add(kia);
@@ -102,24 +102,24 @@ public class Main {
         racingСar.add(kamAZ);
         racingСar.add(mercedesBenz);
         racingСar.add(volvo);
-        racingСar.add(daf);
+        racingСar.add(daf);*/
 
-        Map<List<Transport>, List<Mechanics>> steamCarMechanic = new HashMap<>();
-        steamCarMechanic.put(List.of(lada), List.of(tod));
-        steamCarMechanic.put(List.of(audi), List.of(tod));
-        steamCarMechanic.put(List.of(bmw), List.of(bob));
-        steamCarMechanic.put(List.of(kia), List.of(empty));
-        steamCarMechanic.put(List.of(ikarus), List.of(bob));
-        steamCarMechanic.put(List.of(mun), List.of(bob));
-        steamCarMechanic.put(List.of(busHyundai), List.of(tod));
-        steamCarMechanic.put(List.of(busKia), List.of(empty));
-        steamCarMechanic.put(List.of(kamAZ), List.of(bob));
-        steamCarMechanic.put(List.of(mercedesBenz), List.of(tod));
-        steamCarMechanic.put(List.of(volvo), List.of(empty));
-        steamCarMechanic.put(List.of(daf), List.of(tod));
+        Map<Transport , List<Mechanics>> steamCarMechanic = new HashMap<>();
+        steamCarMechanic.put(lada, List.of(tod));
+        steamCarMechanic.put(audi, List.of(tod));
+        steamCarMechanic.put(bmw, List.of(bob));
+        steamCarMechanic.put(kia, List.of(empty));
+        steamCarMechanic.put(ikarus, List.of(bob));
+        steamCarMechanic.put(mun, List.of(bob));
+        steamCarMechanic.put(busHyundai, List.of(tod));
+        steamCarMechanic.put(busKia, List.of(empty));
+        steamCarMechanic.put(kamAZ, List.of(bob));
+        steamCarMechanic.put(mercedesBenz, List.of(tod));
+        steamCarMechanic.put(volvo, List.of(empty));
+        steamCarMechanic.put(daf, List.of(tod));
 
         System.out.println("Список автомодиль - механик:");
-        for (Map.Entry<List<Transport>, List<Mechanics>> steam: steamCarMechanic.entrySet()) {
+        for (Map.Entry<Transport, List<Mechanics>> steam: steamCarMechanic.entrySet()) {
             System.out.println("");
             System.out.println(steam.getKey()+ " "+ steam.getValue());
         }
