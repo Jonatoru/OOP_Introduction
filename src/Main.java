@@ -1,3 +1,4 @@
+import drivers.Driver;
 import enums.BodyType;
 import enums.Capacity;
 import enums.LoadCapacity;
@@ -8,10 +9,7 @@ import drivers.CategoryC;
 import drivers.CategoryD;
 import mechanics.Mechanics;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Main {
     private static void infoPrinting (Transport transport){
@@ -94,7 +92,7 @@ public class Main {
         Transport volvo = new Trucks("Volvo", "FH", 12.8, seven, LoadCapacity.N1, List.of(empty));
         Transport daf = new Trucks("DAF", "XF", 12.9, eight, LoadCapacity.N3, List.of(tod));
 
-        racingСar.add(lada);
+        /*racingСar.add(lada);
         racingСar.add(audi);
         racingСar.add(bmw);
         racingСar.add(kia);
@@ -105,20 +103,48 @@ public class Main {
         racingСar.add(kamAZ);
         racingСar.add(mercedesBenz);
         racingСar.add(volvo);
-        racingСar.add(daf);
+        racingСar.add(daf);*/
 
-        System.out.println(racingСar.get(0));
-        System.out.println(racingСar.get(7));
-        System.out.println(racingСar.get(9));
+        Map<Transport , List<Mechanics>> steamCarMechanic = new HashMap<>();
+        steamCarMechanic.put(lada, List.of(tod));
+        steamCarMechanic.put(audi, List.of(tod));
+        steamCarMechanic.put(bmw, List.of(bob));
+        steamCarMechanic.put(kia, List.of(empty));
+        steamCarMechanic.put(ikarus, List.of(bob));
+        steamCarMechanic.put(mun, List.of(bob));
+        steamCarMechanic.put(busHyundai, List.of(tod));
+        steamCarMechanic.put(busKia, List.of(empty));
+        steamCarMechanic.put(kamAZ, List.of(bob));
+        steamCarMechanic.put(mercedesBenz, List.of(tod));
+        steamCarMechanic.put(volvo, List.of(empty));
+        steamCarMechanic.put(daf, List.of(tod));
 
-        bob.fixTheCar(ikarus);
-        bob.carryOutMaintenance(lada);
+        System.out.println("Список автомодиль - механик:");
+        for (Map.Entry<Transport, List<Mechanics>> steam: steamCarMechanic.entrySet()) {
+            System.out.println("");
+            System.out.println(steam.getKey()+ " "+ steam.getValue());
+        }
 
-        System.out.println("");
-        System.out.println("Задача 2");
-        System.out.println("");
+        Set<Driver> drivers = new HashSet<>();
+        drivers.add(one);
+        drivers.add(two);
+        drivers.add(three);
+        drivers.add(four);
+        drivers.add(five);
+        drivers.add(six);
+        drivers.add(seven);
+        drivers.add(eight);
+        drivers.add(nine);
+        drivers.add(ten);
+        drivers.add(eleven);
+        drivers.add(twelve);
+        drivers.add(one);
 
-        Queue<Transport> transportsToSTO = new ArrayDeque<>();
+        Iterator<Driver> driverIterator = drivers.iterator();
+        while (driverIterator.hasNext()){
+            System.out.println(driverIterator.next());
+        }
+        /*Queue<Transport> transportsToSTO = new ArrayDeque<>();
 
         ServiceStation sto = new ServiceStation(transportsToSTO);
 
@@ -128,7 +154,9 @@ public class Main {
 
         for (int i = 0; i <= transportsToSTO.size(); i++){
             sto.carryOutVehicleInspection(transportsToSTO);
-        }
+        }*/
+
+
         /*System.out.println("Легковые автомодили:");
         System.out.println(lada);
         System.out.println(audi);
